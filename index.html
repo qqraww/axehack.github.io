@@ -1,0 +1,2380 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackMaster Academy | Интерактивный курс по этичному хакингу от профессионала AXE | @username5113</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Добавим иконки -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Основные стили -->
+    <style>
+        :root {
+            /* Основные цвета */
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #1a1a2a;
+            --bg-gradient: linear-gradient(135deg, #0a0a0f 0%, #1a1a2a 100%);
+            --accent-gold: #ffd700;
+            --accent-gold-dark: #b8860b;
+            --accent-gold-light: rgba(255, 215, 0, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --warning-red: #ff3a3a;
+            --success-green: #00cc66;
+            --info-blue: #3a9fff;
+            
+            /* Компоненты */
+            --card-bg: rgba(20, 20, 35, 0.7);
+            --card-border: rgba(255, 215, 0, 0.1);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --glow-effect: 0 0 15px rgba(255, 215, 0, 0.3);
+            
+            /* Размеры и радиусы */
+            --border-radius-sm: 8px;
+            --border-radius-md: 15px;
+            --border-radius-lg: 25px;
+            --spacing-xs: 5px;
+            --spacing-sm: 10px;
+            --spacing-md: 20px;
+            --spacing-lg: 30px;
+            --spacing-xl: 50px;
+        }
+
+        /* Ресет стилей */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Основные стили */
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding: 0 var(--spacing-md);
+            position: relative;
+        }
+
+        /* Типография */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+        }
+
+        h1.main-title {
+            font-size: 3.5rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        h1.main-title .accent {
+            color: var(--text-primary);
+            font-weight: 300;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), transparent);
+        }
+
+        .section-title i {
+            margin-right: var(--spacing-sm);
+            color: var(--accent-gold);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Основная навигация */
+        .main-nav {
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px var(--spacing-md);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .help-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .help-btn:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Прогресс и XP */
+        .progress-stats {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 15px;
+        }
+
+        .level-badge {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(252, 186, 3, 0.3);
+        }
+
+        .xp-progress {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .xp-bar {
+            width: 150px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .xp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-dark));
+            width: 0%;
+            transition: width 0.5s ease-out;
+        }
+
+        .xp-text {
+            font-size: 0.8rem;
+            text-align: right;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 5px;
+        }
+
+        .reset-progress-btn {
+            background: rgba(255, 59, 48, 0.2);
+            border: none;
+            color: var(--warning-red);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+
+        .reset-progress-btn:hover {
+            background: rgba(255, 59, 48, 0.4);
+            transform: scale(1.1);
+            color: white;
+        }
+
+        /* Заголовок */
+        header {
+            text-align: center;
+            padding: var(--spacing-xl) 0 var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        /* Предупреждение */
+        .warning-box {
+            background: rgba(255, 58, 58, 0.1);
+            border: 1px solid var(--warning-red);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            animation: pulsate 2s infinite;
+        }
+
+        @keyframes pulsate {
+            0% { box-shadow: 0 0 0 0 rgba(255, 58, 58, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 58, 58, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 58, 58, 0); }
+        }
+
+        .warning-icon {
+            font-size: 2rem;
+            color: var(--warning-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .warning-content h3 {
+            color: var(--warning-red);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        /* Карта прогресса */
+        .progress-map {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .map-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: var(--spacing-lg) 0;
+            padding: var(--spacing-md);
+            background: var(--card-bg);
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+        }
+
+        .map-node {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius-md);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .map-node.active {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: var(--accent-gold);
+            box-shadow: var(--glow-effect);
+        }
+
+        .map-node.unlocked:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .map-node.locked {
+            background: rgba(0, 0, 0, 0.3);
+            filter: grayscale(1);
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .node-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+        }
+
+        .map-node.active .node-icon {
+            background: var(--accent-gold);
+            color: black;
+        }
+
+        .node-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .node-title {
+            font-weight: 600;
+        }
+
+        .node-status {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .node-status.completed {
+            color: var(--success-green);
+        }
+
+        .map-path {
+            flex: 1;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold-light), transparent);
+            min-width: 30px;
+            max-width: 80px;
+        }
+
+        /* Сетка модулей */
+        .module-selection {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .module-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-card:hover:not(.locked) {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent-gold-light);
+        }
+
+        .module-header {
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .module-icon {
+            font-size: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .module-progress {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar {
+            width: 100px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-dark));
+            width: 0%;
+        }
+
+        .module-title {
+            padding: 0 var(--spacing-md);
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.2rem;
+        }
+
+        .module-description {
+            padding: 0 var(--spacing-md);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-md);
+            flex-grow: 1;
+        }
+
+        .module-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            padding: 0 var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3px 8px;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.8rem;
+        }
+
+        .badge.tool {
+            border: 1px solid var(--accent-gold-light);
+            color: var(--accent-gold);
+        }
+
+        .badge.difficulty {
+            border: 1px solid rgba(58, 159, 255, 0.3);
+            color: var(--info-blue);
+        }
+
+        .module-btn {
+            margin: var(--spacing-md);
+            padding: 10px;
+            background: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            border-radius: var(--border-radius-lg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .module-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .module-btn:hover:not(.disabled) {
+            background: var(--accent-gold);
+            color: black;
+            box-shadow: var(--glow-effect);
+        }
+
+        .module-btn.disabled {
+            border-color: var(--text-secondary);
+            color: var(--text-secondary);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .module-lock {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: var(--border-radius-sm);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .module-card.locked {
+            filter: grayscale(0.7);
+            opacity: 0.8;
+        }
+
+        /* Модальные окна */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            margin: 10% auto;
+            padding: 0;
+            border: 1px solid var(--accent-gold-light);
+            border-radius: var(--border-radius-md);
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            animation: modalIn 0.3s ease-out;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            padding: var(--spacing-md);
+            background: rgba(255, 215, 0, 0.1);
+            border-bottom: 1px solid var(--accent-gold-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+        }
+
+        .close-modal {
+            color: var(--text-secondary);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-gold);
+        }
+
+        .modal-body {
+            padding: var(--spacing-md);
+        }
+
+        .modal-body h4 {
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .modal-body ul {
+            margin-left: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .modal-footer {
+            padding: var(--spacing-md);
+            border-top: 1px solid var(--accent-gold-light);
+            text-align: right;
+        }
+
+        .modal-btn {
+            padding: 8px 20px;
+            background: var(--accent-gold);
+            color: black;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn:hover {
+            box-shadow: var(--glow-effect);
+            transform: translateY(-2px);
+        }
+
+        /* Контент модуля */
+        .module-content {
+            margin-bottom: var(--spacing-xl);
+            background: var(--card-bg);
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .module-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md);
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .back-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-gold);
+        }
+
+        .module-title-nav {
+            font-weight: 600;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .module-progress-nav {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .lesson-container {
+            min-height: 400px;
+            padding: var(--spacing-lg);
+            position: relative;
+        }
+
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md);
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid var(--card-border);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 8px 20px;
+            border-radius: var(--border-radius-lg);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: var(--accent-gold);
+            color: black;
+            box-shadow: var(--glow-effect);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-color: var(--text-secondary);
+            color: var(--text-secondary);
+        }
+
+        .lesson-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lesson-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lesson-dot.active {
+            background: var(--accent-gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .lesson-dot:hover:not(.active) {
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        /* Нижний колонтитул */
+        footer {
+            text-align: center;
+            padding: var(--spacing-lg) 0;
+            margin-top: var(--spacing-xl);
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .disclaimer {
+            margin-top: var(--spacing-sm);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* Стили для контента уроков */
+        .lesson-slide {
+            padding: var(--spacing-md);
+        }
+
+        .info-box {
+            background: rgba(58, 159, 255, 0.1);
+            border: 1px solid rgba(58, 159, 255, 0.3);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .info-box h4 {
+            color: var(--info-blue);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quiz-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--accent-gold-light);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: var(--spacing-md) 0;
+        }
+
+        .quiz-options label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: var(--border-radius-sm);
+            transition: background 0.3s ease;
+        }
+
+        .quiz-options label:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .quiz-options input[type="radio"] {
+            margin-right: 10px;
+            accent-color: var(--accent-gold);
+        }
+
+        .success-message {
+            background: rgba(0, 204, 102, 0.1);
+            border: 1px solid var(--success-green);
+            color: var(--success-green);
+            padding: 10px;
+            border-radius: var(--border-radius-sm);
+            margin-top: var(--spacing-md);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .error-message {
+            background: rgba(255, 58, 58, 0.1);
+            border: 1px solid var(--warning-red);
+            color: var(--warning-red);
+            padding: 10px;
+            border-radius: var(--border-radius-sm);
+            margin-top: var(--spacing-md);
+            animation: shake 0.5s ease;
+        }
+
+        .warning-message {
+            background: rgba(255, 165, 0, 0.1);
+            border: 1px solid orange;
+            color: orange;
+            padding: 10px;
+            border-radius: var(--border-radius-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .code-sample {
+            margin: var(--spacing-md) 0;
+        }
+
+        .code-header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px var(--spacing-md);
+            border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--card-border);
+            border-bottom: none;
+        }
+
+        .code-title {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+        }
+
+        .code-sample pre {
+            margin: 0;
+            background: rgba(0, 0, 0, 0.2);
+            padding: var(--spacing-md);
+            border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
+            overflow-x: auto;
+            border: 1px solid var(--card-border);
+            font-family: 'Fira Code', monospace;
+            color: var(--text-primary);
+        }
+
+        .code-sample code {
+            color: var(--accent-gold);
+        }
+
+        .attack-method {
+            background: rgba(255, 58, 58, 0.05);
+            border: 1px solid rgba(255, 58, 58, 0.2);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .attack-method h4 {
+            color: var(--warning-red);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .method-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: var(--spacing-md);
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-number {
+            width: 25px;
+            height: 25px;
+            background: var(--warning-red);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .interactive-game {
+            background: rgba(58, 159, 255, 0.05);
+            border: 1px solid rgba(58, 159, 255, 0.2);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: var(--spacing-md) 0;
+        }
+
+        .drag-item {
+            background: rgba(58, 159, 255, 0.1);
+            padding: 10px;
+            border-radius: var(--border-radius-sm);
+            cursor: grab;
+            text-align: center;
+            border: 1px solid rgba(58, 159, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .drag-item.dragging {
+            opacity: 0.5;
+        }
+
+        .drag-item.correct {
+            background: rgba(0, 204, 102, 0.1);
+            border-color: var(--success-green);
+            color: var(--success-green);
+        }
+
+        .drag-item.incorrect {
+            background: rgba(255, 58, 58, 0.1);
+            border-color: var(--warning-red);
+            color: var(--warning-red);
+            animation: shake 0.5s ease;
+        }
+
+        .drop-zone {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-sm);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .drop-zone.drag-over {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: var(--accent-gold);
+        }
+
+        .challenge-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            margin: var(--spacing-md) 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .challenge-header {
+            background: rgba(0, 0, 0, 0.2);
+            padding: var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .challenge-level {
+            color: var(--info-blue);
+            font-size: 0.9rem;
+        }
+
+        .challenge-reward {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .challenge-description {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .challenge-steps {
+            padding: var(--spacing-md);
+        }
+
+        .task-step {
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .task-step:last-child {
+            border-bottom: none;
+        }
+
+        .task-verify {
+            display: flex;
+            align-items: center;
+            margin-top: var(--spacing-sm);
+        }
+
+        .task-verify input[type="checkbox"] {
+            margin-right: 10px;
+            accent-color: var(--accent-gold);
+            width: 18px;
+            height: 18px;
+        }
+
+        .challenge-completion {
+            background: rgba(0, 0, 0, 0.2);
+            padding: var(--spacing-md);
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .challenge-complete-btn {
+            background: var(--accent-gold);
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .challenge-complete-btn:hover {
+            box-shadow: var(--glow-effect);
+            transform: translateY(-2px);
+        }
+
+        .challenge-skip-btn {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--text-secondary);
+            padding: 10px 20px;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .challenge-skip-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .lesson-placeholder {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-lg);
+            text-align: center;
+            margin: var(--spacing-lg) 0;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--spacing-sm);
+                margin-top: 50px;
+            }
+            
+            h1.main-title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .map-path {
+                height: 20px;
+                width: 3px;
+                margin: 0 auto;
+            }
+            
+            .warning-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .module-content {
+                margin-bottom: var(--spacing-lg);
+            }
+            
+            .lesson-container {
+                padding: var(--spacing-md);
+            }
+            
+            .progress-stats {
+                display: none;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .game-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1.main-title {
+                font-size: 2rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+            
+            .module-nav, .lesson-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .challenge-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .code-sample pre {
+                font-size: 0.8rem;
+            }
+        }
+
+        .modal-btn-danger {
+            background: var(--warning-red);
+        }
+
+        .modal-btn-cancel {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Главная панель навигации -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i> HackMaster Academy
+            </div>
+            <div class="nav-right">
+                <div class="progress-stats">
+                    <div class="level-badge">
+                        <span id="level-number">1</span>
+                    </div>
+                    <div class="xp-progress">
+                        <div class="xp-bar">
+                            <div class="xp-fill" id="xp-fill"></div>
+                        </div>
+                        <div class="xp-text">
+                            <span id="current-xp">0</span>/<span id="next-level-xp">50</span> XP
+                            <button class="reset-progress-btn" id="resetButton" title="Сбросить прогресс">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button class="help-btn" id="helpButton">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контейнер -->
+    <div class="container">
+        <!-- Заголовок страницы -->
+        <header>
+            <h1 class="main-title">HACKMASTER <span class="accent">ACADEMY</span></h1>
+            <p class="subtitle">Интерактивный курс по этичному хакингу от теории к практике от профессионала из AXE | @username5113</p>
+            
+            <!-- Предупреждение -->
+            <div class="warning-box">
+                <div class="warning-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="warning-content">
+                    <h3>ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ</h3>
+                    <p>Данный курс предназначен <strong>исключительно для образовательных целей</strong>. Использование полученных знаний для несанкционированного доступа к системам и сетям <strong>является незаконным</strong> и может повлечь уголовную ответственность. Практикуйте только в собственных тестовых средах или с явного разрешения владельца.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Карта прогресса -->
+        <section class="progress-map">
+            <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> Карта обучения</h2>
+            <div class="map-container">
+                <div class="map-node active" data-module="intro">
+                    <div class="node-icon"><i class="fas fa-flag"></i></div>
+                    <div class="node-info">
+                        <div class="node-title">Введение</div>
+                        <div class="node-status completed">Завершено</div>
+                    </div>
+                </div>
+                <div class="map-path"></div>
+                
+                <div class="map-node unlocked" data-module="wifi">
+                    <div class="node-icon"><i class="fas fa-wifi"></i></div>
+                    <div class="node-info">
+                        <div class="node-title">Wi-Fi атаки</div>
+                        <div class="node-status">Уровень 1</div>
+                    </div>
+                </div>
+                <div class="map-path"></div>
+                
+                <div class="map-node locked" data-module="payload">
+                    <div class="node-icon"><i class="fas fa-bug"></i></div>
+                    <div class="node-info">
+                        <div class="node-title">Создание пейлоадов</div>
+                        <div class="node-status">Уровень 2</div>
+                    </div>
+                </div>
+                <div class="map-path"></div>
+                
+                <div class="map-node locked" data-module="network">
+                    <div class="node-icon"><i class="fas fa-network-wired"></i></div>
+                    <div class="node-info">
+                        <div class="node-title">Сетевая разведка</div>
+                        <div class="node-status">Уровень 3</div>
+                    </div>
+                </div>
+                <div class="map-path"></div>
+                
+                <div class="map-node locked" data-module="web">
+                    <div class="node-icon"><i class="fas fa-globe"></i></div>
+                    <div class="node-info">
+                        <div class="node-title">Веб-уязвимости</div>
+                        <div class="node-status">Уровень 4</div>
+                    </div>
+                </div>
+                <div class="map-path"></div>
+                
+                <div class="map-node locked" data-module="mobile">
+                    <div class="node-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="node-info">
+                        <div class="node-title">Мобильные атаки</div>
+                        <div class="node-status">Уровень 5</div>
+                    </div>
+                </div>
+                <div class="map-path"></div>
+                
+                <div class="map-node locked" data-module="final">
+                    <div class="node-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="node-info">
+                        <div class="node-title">Финальный тест</div>
+                        <div class="node-status">Мастер</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Выбор модуля -->
+        <section class="module-selection">
+            <h2 class="section-title"><i class="fas fa-book-open"></i> Доступные модули</h2>
+            <div class="modules-grid">
+                <!-- Модуль Wi-Fi атак -->
+                <div class="module-card" data-module="wifi">
+                    <div class="module-header">
+                        <i class="fas fa-wifi module-icon"></i>
+                        <div class="module-progress">
+                            <div class="progress-text">Прогресс: 0/3</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="module-title">Wi-Fi атаки</h3>
+                    <p class="module-description">Изучите методы аудита безопасности Wi-Fi сетей с помощью Aircrack-ng и Wifite.</p>
+                    <div class="module-badges">
+                        <div class="badge tool">Aircrack-ng</div>
+                        <div class="badge tool">Wifite</div>
+                        <div class="badge difficulty">Начальный</div>
+                    </div>
+                    <button class="module-btn">Начать обучение</button>
+                </div>
+                
+                <!-- Модуль создания пейлоадов -->
+                <div class="module-card locked" data-module="payload">
+                    <div class="module-header">
+                        <i class="fas fa-bug module-icon"></i>
+                        <div class="module-lock">
+                            <i class="fas fa-lock"></i>
+                            <span>Уровень 2</span>
+                        </div>
+                    </div>
+                    <h3 class="module-title">Создание пейлоадов</h3>
+                    <p class="module-description">Научитесь создавать и использовать различные типы пейлоадов с MSFvenom.</p>
+                    <div class="module-badges">
+                        <div class="badge tool">MSFvenom</div>
+                        <div class="badge tool">Metasploit</div>
+                        <div class="badge difficulty">Средний</div>
+                    </div>
+                    <button class="module-btn disabled">Разблокируется на уровне 2</button>
+                </div>
+                
+                <!-- Модуль сетевой разведки -->
+                <div class="module-card locked" data-module="network">
+                    <div class="module-header">
+                        <i class="fas fa-network-wired module-icon"></i>
+                        <div class="module-lock">
+                            <i class="fas fa-lock"></i>
+                            <span>Уровень 3</span>
+                        </div>
+                    </div>
+                    <h3 class="module-title">Сетевая разведка</h3>
+                    <p class="module-description">Освойте методы сканирования сетей и обнаружения уязвимостей с помощью Nmap.</p>
+                    <div class="module-badges">
+                        <div class="badge tool">Nmap</div>
+                        <div class="badge tool">Zenmap</div>
+                        <div class="badge difficulty">Средний</div>
+                    </div>
+                    <button class="module-btn disabled">Разблокируется на уровне 3</button>
+                </div>
+                
+                <!-- Модуль веб-уязвимостей -->
+                <div class="module-card locked" data-module="web">
+                    <div class="module-header">
+                        <i class="fas fa-globe module-icon"></i>
+                        <div class="module-lock">
+                            <i class="fas fa-lock"></i>
+                            <span>Уровень 4</span>
+                        </div>
+                    </div>
+                    <h3 class="module-title">Веб-уязвимости</h3>
+                    <p class="module-description">Изучите SQL-инъекции и методы эксплуатации уязвимостей веб-приложений.</p>
+                    <div class="module-badges">
+                        <div class="badge tool">SQLmap</div>
+                        <div class="badge tool">Burp Suite</div>
+                        <div class="badge difficulty">Сложный</div>
+                    </div>
+                    <button class="module-btn disabled">Разблокируется на уровне 4</button>
+                </div>
+                
+                <!-- Модуль мобильных атак -->
+                <div class="module-card locked" data-module="mobile">
+                    <div class="module-header">
+                        <i class="fas fa-mobile-alt module-icon"></i>
+                        <div class="module-lock">
+                            <i class="fas fa-lock"></i>
+                            <span>Уровень 5</span>
+                        </div>
+                    </div>
+                    <h3 class="module-title">Мобильные атаки</h3>
+                    <p class="module-description">Научитесь проверять безопасность Android-приложений и создавать пейлоады для мобильных.</p>
+                    <div class="module-badges">
+                        <div class="badge tool">ADB</div>
+                        <div class="badge tool">APKTool</div>
+                        <div class="badge difficulty">Сложный</div>
+                    </div>
+                    <button class="module-btn disabled">Разблокируется на уровне 5</button>
+                </div>
+                
+                <!-- Финальный тест -->
+                <div class="module-card locked" data-module="final">
+                    <div class="module-header">
+                        <i class="fas fa-trophy module-icon"></i>
+                        <div class="module-lock">
+                            <i class="fas fa-lock"></i>
+                            <span>Все модули</span>
+                        </div>
+                    </div>
+                    <h3 class="module-title">Финальный тест</h3>
+                    <p class="module-description">Проверьте свои знания в комплексном тесте, объединяющем все изученные техники.</p>
+                    <div class="module-badges">
+                        <div class="badge tool">Все инструменты</div>
+                        <div class="badge difficulty">Эксперт</div>
+                    </div>
+                    <button class="module-btn disabled">Разблокируется после всех модулей</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция текущего модуля (появляется при выборе модуля) -->
+        <section id="active-module" class="module-content" style="display: none;">
+            <!-- Верхняя навигация модуля -->
+            <div class="module-nav">
+                <button class="back-btn" id="backToModules">
+                    <i class="fas fa-arrow-left"></i> К модулям
+                </button>
+                <div class="module-title-nav">
+                    <i class="fas fa-wifi"></i> <span id="current-module-title">Wi-Fi атаки</span>
+                </div>
+                <div class="module-progress-nav">
+                    <span id="lesson-progress">Урок 1/3</span>
+                </div>
+            </div>
+
+            <!-- Контейнер для слайдов уроков -->
+            <div id="lesson-container" class="lesson-container">
+                <!-- Слайды будут загружаться динамически -->
+            </div>
+            
+            <!-- Навигация по урокам -->
+            <div class="lesson-nav">
+                <button class="nav-btn" id="prev-lesson" disabled>
+                    <i class="fas fa-chevron-left"></i> Назад
+                </button>
+                
+                <div class="lesson-dots" id="lesson-dots">
+                    <!-- Точки навигации добавляются динамически -->
+                </div>
+                
+                <button class="nav-btn" id="next-lesson">
+                    Далее <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Модальное окно для уведомлений -->
+        <div class="modal" id="notification-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">Заголовок уведомления</h3>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    Текст уведомления
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn" id="modal-confirm">OK</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно для помощи -->
+        <div class="modal" id="help-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Помощь по курсу</h3>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <h4>Как проходить курс</h4>
+                    <p>Курс состоит из нескольких модулей, каждый из которых содержит теоретические и практические уроки. Для прохождения урока следуйте инструкциям и выполняйте задания.</p>
+                    
+                    <h4>Система опыта и уровней</h4>
+                    <p>За каждое задание вы получаете очки опыта (XP). Накопив достаточно XP, вы повышаете свой уровень и открываете доступ к новым модулям.</p>
+                    
+                    <h4>Виды заданий</h4>
+                    <ul>
+                        <li><strong>Теоретические тесты</strong> - проверяют знание материала</li>
+                        <li><strong>Практические задания</strong> - необходимо выполнить определенные действия</li>
+                        <li><strong>Мини-игры</strong> - интерактивные упражнения для закрепления навыков</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn" id="help-close">Понятно</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно для сброса прогресса -->
+        <div class="modal" id="reset-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Сбросить прогресс?</h3>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p>Вы уверены, что хотите сбросить весь прогресс обучения? Это действие нельзя отменить.</p>
+                    <p>Будут сброшены:</p>
+                    <ul>
+                        <li>Уровень и опыт</li>
+                        <li>Пройденные уроки</li>
+                        <li>Разблокированные модули</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn modal-btn-danger" id="reset-confirm">Сбросить</button>
+                    <button class="modal-btn modal-btn-cancel" id="reset-cancel">Отмена</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Нижний колонтитул -->
+        <footer>
+            <p>&copy; 2025 HackMaster Academy | Все материалы предоставлены исключительно в образовательных целях</p>
+            <p class="disclaimer">Неправомерное использование полученных знаний может привести к уголовной ответственности</p>
+        </footer>
+    </div>
+
+    <!-- Загрузим стили и скрипты вo второй части -->
+    <script>
+        // Основные переменные
+        let currentModule = null;
+        let currentLesson = 0;
+        let userXP = 0;
+        let userLevel = 1;
+        let completedLessons = {};
+        
+        // Данные о модулях
+        const modules = {
+            intro: {
+                title: "Введение",
+                lessons: 3,
+                completed: true,
+                unlocked: true
+            },
+            wifi: {
+                title: "Wi-Fi атаки",
+                lessons: 3,
+                completed: false,
+                unlocked: true
+            },
+            payload: {
+                title: "Создание пейлоадов",
+                lessons: 3,
+                completed: false,
+                unlocked: false,
+                requiredLevel: 2
+            },
+            network: {
+                title: "Сетевая разведка",
+                lessons: 3,
+                completed: false,
+                unlocked: false,
+                requiredLevel: 3
+            },
+            web: {
+                title: "Веб-уязвимости",
+                lessons: 3,
+                completed: false,
+                unlocked: false,
+                requiredLevel: 4
+            },
+            mobile: {
+                title: "Мобильные атаки",
+                lessons: 3,
+                completed: false,
+                unlocked: false,
+                requiredLevel: 5
+            },
+            final: {
+                title: "Финальный тест",
+                lessons: 1,
+                completed: false,
+                unlocked: false,
+                requiredLevel: 6
+            }
+        };
+        
+        // Функции сохранения/загрузки данных
+        function saveUserProgress() {
+            const progressData = {
+                userXP,
+                userLevel,
+                completedLessons,
+                unlockedModules: Object.keys(modules).filter(id => modules[id].unlocked),
+                completedModules: Object.keys(modules).filter(id => modules[id].completed)
+            };
+            localStorage.setItem('hackMasterProgress', JSON.stringify(progressData));
+        }
+        
+        function loadUserProgress() {
+            const savedProgress = localStorage.getItem('hackMasterProgress');
+            if (savedProgress) {
+                const progressData = JSON.parse(savedProgress);
+                
+                // Восстановление XP и уровня
+                userXP = progressData.userXP || 0;
+                userLevel = progressData.userLevel || 1;
+                completedLessons = progressData.completedLessons || {};
+                
+                // Обновление прогресс-бара и отображения XP
+                document.getElementById('current-xp').textContent = userXP;
+                document.getElementById('next-level-xp').textContent = userLevel * 50;
+                document.getElementById('level-number').textContent = userLevel;
+                document.getElementById('xp-fill').style.width = `${(userXP % 50) / 50 * 100}%`;
+                
+                // Разблокировка модулей
+                if (progressData.unlockedModules) {
+                    progressData.unlockedModules.forEach(moduleId => {
+                        modules[moduleId].unlocked = true;
+                        
+                        // Обновление UI для разблокированных модулей
+                        const moduleCard = document.querySelector(`.module-card[data-module="${moduleId}"]`);
+                        const mapNode = document.querySelector(`.map-node[data-module="${moduleId}"]`);
+                        
+                        if (moduleCard && moduleCard.classList.contains('locked')) {
+                            moduleCard.classList.remove('locked');
+                            const btn = moduleCard.querySelector('.module-btn');
+                            if (btn) {
+                                btn.classList.remove('disabled');
+                                btn.textContent = 'Начать обучение';
+                            }
+                        }
+                        
+                        if (mapNode && mapNode.classList.contains('locked')) {
+                            mapNode.classList.remove('locked');
+                            mapNode.classList.add('unlocked');
+                        }
+                    });
+                }
+                
+                // Отметка завершенных модулей
+                if (progressData.completedModules) {
+                    progressData.completedModules.forEach(moduleId => {
+                        modules[moduleId].completed = true;
+                        
+                        // Обновление UI для завершенных модулей
+                        const mapNode = document.querySelector(`.map-node[data-module="${moduleId}"]`);
+                        if (mapNode) {
+                            const statusEl = mapNode.querySelector('.node-status');
+                            if (statusEl) {
+                                statusEl.textContent = 'Завершено';
+                                statusEl.classList.add('completed');
+                            }
+                        }
+                        
+                        // Обновление прогресс-бара модуля
+                        const moduleCard = document.querySelector(`.module-card[data-module="${moduleId}"]`);
+                        if (moduleCard) {
+                            const progressText = moduleCard.querySelector('.progress-text');
+                            const progressFill = moduleCard.querySelector('.progress-fill');
+                            
+                            if (progressText) progressText.textContent = `Прогресс: ${modules[moduleId].lessons}/${modules[moduleId].lessons}`;
+                            if (progressFill) progressFill.style.width = '100%';
+                        }
+                    });
+                }
+                
+                // Обновление прогресса в частично завершенных модулях
+                Object.keys(completedLessons).forEach(moduleId => {
+                    const lessonCount = completedLessons[moduleId].length;
+                    const totalLessons = modules[moduleId].lessons;
+                    
+                    if (lessonCount > 0 && lessonCount < totalLessons) {
+                        const moduleCard = document.querySelector(`.module-card[data-module="${moduleId}"]`);
+                        if (moduleCard) {
+                            const progressText = moduleCard.querySelector('.progress-text');
+                            const progressFill = moduleCard.querySelector('.progress-fill');
+                            
+                            if (progressText) progressText.textContent = `Прогресс: ${lessonCount}/${totalLessons}`;
+                            if (progressFill) progressFill.style.width = `${(lessonCount / totalLessons) * 100}%`;
+                        }
+                    }
+                });
+                
+                return true;
+            }
+            return false;
+        }
+        
+        // Обновление статистики модуля
+        function updateModuleStats(moduleId) {
+            if (!completedLessons[moduleId]) {
+                completedLessons[moduleId] = [];
+            }
+            
+            // Если текущий урок не отмечен как завершенный, добавляем его
+            if (!completedLessons[moduleId].includes(currentLesson)) {
+                completedLessons[moduleId].push(currentLesson);
+            }
+            
+            const lessonCount = completedLessons[moduleId].length;
+            const totalLessons = modules[moduleId].lessons;
+            
+            // Обновляем UI прогресса
+            const moduleCard = document.querySelector(`.module-card[data-module="${moduleId}"]`);
+            if (moduleCard) {
+                const progressText = moduleCard.querySelector('.progress-text');
+                const progressFill = moduleCard.querySelector('.progress-fill');
+                
+                if (progressText) progressText.textContent = `Прогресс: ${lessonCount}/${totalLessons}`;
+                if (progressFill) progressFill.style.width = `${(lessonCount / totalLessons) * 100}%`;
+            }
+            
+            // Если все уроки пройдены, отмечаем модуль как завершенный
+            if (lessonCount === totalLessons) {
+                modules[moduleId].completed = true;
+                
+                // Обновляем стиль узла на карте
+                const mapNode = document.querySelector(`.map-node[data-module="${moduleId}"]`);
+                if (mapNode) {
+                    const statusEl = mapNode.querySelector('.node-status');
+                    if (statusEl) {
+                        statusEl.textContent = 'Завершено';
+                        statusEl.classList.add('completed');
+                    }
+                }
+                
+                // Бонусные XP за завершение модуля
+                updateXP(30);
+            }
+            
+            // Сохраняем прогресс
+            saveUserProgress();
+        }
+        
+        // Данные о содержимом уроков Wi-Fi
+        const wifiLessons = [
+            // Урок 1: Введение
+            {
+                title: "Введение в Wi-Fi безопасность",
+                content: `
+                    <div class="lesson-slide">
+                        <h3>📚 Безопасность Wi-Fi сетей</h3>
+                        <p>Wi-Fi сети используют различные протоколы шифрования для защиты передаваемых данных:</p>
+                        <ul>
+                            <li><strong>WEP (Wired Equivalent Privacy)</strong> - устаревший и крайне небезопасный протокол</li>
+                            <li><strong>WPA (Wi-Fi Protected Access)</strong> - разработан для замены WEP, но также имеет уязвимости</li>
+                            <li><strong>WPA2</strong> - улучшенная версия WPA, наиболее распространенный стандарт</li>
+                            <li><strong>WPA3</strong> - новейший стандарт с дополнительными мерами защиты</li>
+                        </ul>
+                        
+                        <div class="info-box">
+                            <h4>🔍 Aircrack-ng</h4>
+                            <p>Aircrack-ng - это набор инструментов для аудита безопасности Wi-Fi сетей, который включает в себя:</p>
+                            <ul>
+                                <li>airmon-ng - управление режимом мониторинга</li>
+                                <li>airodump-ng - захват пакетов</li>
+                                <li>aireplay-ng - генерация трафика и деаутентификация</li>
+                                <li>aircrack-ng - взлом ключей WEP/WPA/WPA2</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="quiz-box">
+                            <h4>Проверьте свои знания</h4>
+                            <p>Какой протокол шифрования Wi-Fi является наиболее уязвимым?</p>
+                            <div class="quiz-options">
+                                <label>
+                                    <input type="radio" name="quiz1" value="a"> WEP
+                                </label>
+                                <label>
+                                    <input type="radio" name="quiz1" value="b"> WPA
+                                </label>
+                                <label>
+                                    <input type="radio" name="quiz1" value="c"> WPA2
+                                </label>
+                                <label>
+                                    <input type="radio" name="quiz1" value="d"> WPA3
+                                </label>
+                            </div>
+                            <div class="quiz-result"></div>
+                        </div>
+                    </div>
+                `
+            },
+            // Урок 2: Теория взлома WEP
+            {
+                title: "Теория взлома WEP",
+                content: `
+                    <div class="lesson-slide">
+                        <h3>🔓 Уязвимости WEP</h3>
+                        <p>WEP использует алгоритм RC4 и имеет несколько критических уязвимостей:</p>
+                        <ul>
+                            <li><strong>Короткие IV (вектор инициализации)</strong> - всего 24 бита, что приводит к их повторному использованию</li>
+                            <li><strong>Слабый алгоритм проверки целостности</strong> (CRC32) - легко предсказуем</li>
+                            <li><strong>Отсутствие проверки управляющих пакетов</strong> - возможны атаки деаутентификации</li>
+                            <li><strong>Статические ключи</strong> - не меняются со временем</li>
+                        </ul>
+                        
+                        <div class="attack-method">
+                            <h4>💥 Метод атаки: Статистический</h4>
+                            <p>При захвате достаточного количества пакетов (обычно 40,000-85,000) с одинаковыми IV, можно определить ключ путем статистического анализа.</p>
+                            <div class="method-steps">
+                                <div class="step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-text">Перевести адаптер в режим мониторинга</div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-text">Захватить пакеты с целевой сети</div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-text">Выполнить деаутентификацию для ускорения</div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-text">Анализировать слабые IV</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="code-sample">
+                            <div class="code-header">
+                                <span class="code-title">Команды для взлома WEP</span>
+                            </div>
+                            <pre><code># Перевод адаптера в режим мониторинга
+airmon-ng start wlan0
+
+# Сканирование сетей
+airodump-ng wlan0mon
+
+# Захват пакетов с определенной сети
+airodump-ng -c [канал] --bssid [MAC] -w capture wlan0mon
+
+# Деаутентификация клиента
+aireplay-ng -0 5 -a [MAC точки] -c [MAC клиента] wlan0mon
+
+# Взлом ключа
+aircrack-ng -b [MAC точки] capture*.cap</code></pre>
+                        </div>
+                        
+                        <div class="interactive-game">
+                            <h4>🎮 Мини-игра: Определите уязвимости</h4>
+                            <p>Перетащите каждую уязвимость к соответствующему ей протоколу:</p>
+                            <div class="game-container">
+                                <div class="drag-item" draggable="true" data-value="wep-iv">Короткие векторы инициализации</div>
+                                <div class="drag-item" draggable="true" data-value="wpa-tkip">Уязвимость TKIP</div>
+                                <div class="drag-item" draggable="true" data-value="wpa2-krack">KRACK-атака</div>
+                                <div class="drop-zone" data-accept="wep-iv">WEP</div>
+                                <div class="drop-zone" data-accept="wpa-tkip">WPA</div>
+                                <div class="drop-zone" data-accept="wpa2-krack">WPA2</div>
+                            </div>
+                            <div class="game-result"></div>
+                        </div>
+                    </div>
+                `
+            },
+            // Урок 3: Практическое задание
+            {
+                title: "Практическое задание",
+                content: `
+                    <div class="lesson-slide">
+                        <h3>⚡ Практическое задание: Взлом WEP сети</h3>
+                        
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <div class="challenge-level">Уровень сложности: Начальный</div>
+                                <div class="challenge-reward">Награда: 25 XP</div>
+                            </div>
+                            
+                            <div class="challenge-description">
+                                <p>В этом задании вы будете использовать Aircrack-ng для взлома WEP-сети в подготовленной тестовой среде.</p>
+                                <p><strong>Примечание:</strong> Выполняйте эти действия ТОЛЬКО в собственной тестовой среде или с явного разрешения владельца сети!</p>
+                            </div>
+                            
+                            <div class="challenge-steps">
+                                <div class="task-step">
+                                    <h4>Шаг 1: Подготовка</h4>
+                                    <p>Переведите ваш Wi-Fi адаптер в режим мониторинга:</p>
+                                    <div class="code-sample">
+                                        <pre><code>sudo airmon-ng check kill
+sudo airmon-ng start wlan0</code></pre>
+                                    </div>
+                                    <div class="task-verify">
+                                        <input type="checkbox" id="step1-verify">
+                                        <label for="step1-verify">Я выполнил этот шаг</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="task-step">
+                                    <h4>Шаг 2: Сканирование сетей</h4>
+                                    <p>Запустите сканирование доступных Wi-Fi сетей:</p>
+                                    <div class="code-sample">
+                                        <pre><code>sudo airodump-ng wlan0mon</code></pre>
+                                    </div>
+                                    <p>Найдите WEP-сеть и запишите её BSSID и канал.</p>
+                                    <div class="task-verify">
+                                        <input type="checkbox" id="step2-verify">
+                                        <label for="step2-verify">Я выполнил этот шаг</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="task-step">
+                                    <h4>Шаг 3: Захват пакетов</h4>
+                                    <p>Запустите захват пакетов выбранной сети:</p>
+                                    <div class="code-sample">
+                                        <pre><code>sudo airodump-ng -c [канал] --bssid [BSSID] -w wep_capture wlan0mon</code></pre>
+                                    </div>
+                                    <div class="task-verify">
+                                        <input type="checkbox" id="step3-verify">
+                                        <label for="step3-verify">Я выполнил этот шаг</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="task-step">
+                                    <h4>Шаг 4: Генерация трафика</h4>
+                                    <p>В новом терминале запустите атаку ARP replay для ускорения сбора данных:</p>
+                                    <div class="code-sample">
+                                        <pre><code>sudo aireplay-ng -3 -b [BSSID] wlan0mon</code></pre>
+                                    </div>
+                                    <div class="task-verify">
+                                        <input type="checkbox" id="step4-verify">
+                                        <label for="step4-verify">Я выполнил этот шаг</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="task-step">
+                                    <h4>Шаг 5: Взлом ключа</h4>
+                                    <p>Когда будет собрано достаточно пакетов (более 10,000 IV), запустите Aircrack-ng:</p>
+                                    <div class="code-sample">
+                                        <pre><code>sudo aircrack-ng wep_capture*.cap</code></pre>
+                                    </div>
+                                    <div class="task-verify">
+                                        <input type="checkbox" id="step5-verify">
+                                        <label for="step5-verify">Я выполнил этот шаг</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="challenge-completion">
+                                <p>Ключ WEP успешно получен?</p>
+                                <button class="challenge-complete-btn">Да, задание выполнено</button>
+                                <button class="challenge-skip-btn">Пропустить задание</button>
+                            </div>
+                            
+                            <div class="challenge-result"></div>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+        
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            // Загрузка сохраненного прогресса
+            const isProgressLoaded = loadUserProgress();
+            
+            if (!isProgressLoaded) {
+                // Если нет сохраненного прогресса, инициализируем XP и уровень
+                updateXP(0);
+            }
+            
+            // Обработчики кнопок в модулях
+            document.querySelectorAll('.module-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const moduleCard = this.closest('.module-card');
+                    if (moduleCard && !moduleCard.classList.contains('locked')) {
+                        const moduleId = moduleCard.dataset.module;
+                        openModule(moduleId);
+                    }
+                });
+            });
+            
+            // Обработчик нажатия на узлы карты
+            document.querySelectorAll('.map-node').forEach(node => {
+                node.addEventListener('click', function() {
+                    const moduleId = this.dataset.module;
+                    if (modules[moduleId].unlocked) {
+                        openModule(moduleId);
+                    } else {
+                        showNotification('Модуль заблокирован', `Этот модуль будет доступен на уровне ${modules[moduleId].requiredLevel}`);
+                    }
+                });
+            });
+            
+            // Кнопка возврата к выбору модулей
+            document.getElementById('backToModules').addEventListener('click', () => {
+                document.getElementById('active-module').style.display = 'none';
+                document.querySelector('.module-selection').style.display = 'block';
+                document.querySelector('.progress-map').style.display = 'block';
+                currentModule = null;
+                currentLesson = 0;
+            });
+            
+            // Кнопки навигации по урокам
+            document.getElementById('prev-lesson').addEventListener('click', () => {
+                if (currentLesson > 0) {
+                    currentLesson--;
+                    loadLesson();
+                }
+            });
+            
+            document.getElementById('next-lesson').addEventListener('click', () => {
+                if (currentModule && currentLesson < modules[currentModule].lessons - 1) {
+                    currentLesson++;
+                    loadLesson();
+                }
+            });
+            
+            // Кнопка помощи
+            document.getElementById('helpButton').addEventListener('click', () => {
+                document.getElementById('help-modal').style.display = 'block';
+            });
+            
+            // Кнопка сброса прогресса
+            document.getElementById('resetButton').addEventListener('click', () => {
+                document.getElementById('reset-modal').style.display = 'block';
+            });
+            
+            // Подтверждение сброса прогресса
+            document.getElementById('reset-confirm').addEventListener('click', () => {
+                resetProgress();
+            });
+            
+            document.getElementById('reset-cancel').addEventListener('click', () => {
+                document.getElementById('reset-modal').style.display = 'none';
+            });
+            
+            // Закрытие модальных окон
+            document.querySelectorAll('.close-modal, #help-close, #modal-confirm').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.closest('.modal').style.display = 'none';
+                });
+            });
+            
+            // Обработка событий квиза и игр будет добавлена динамически
+        });
+        
+        // Открытие модуля
+        function openModule(moduleId) {
+            currentModule = moduleId;
+            currentLesson = 0;
+            
+            // Скрыть выбор модулей и карту
+            document.querySelector('.module-selection').style.display = 'none';
+            document.querySelector('.progress-map').style.display = 'none';
+            
+            // Показать содержимое модуля
+            const moduleContent = document.getElementById('active-module');
+            moduleContent.style.display = 'block';
+            
+            // Обновить заголовок
+            document.getElementById('current-module-title').textContent = modules[moduleId].title;
+            
+            // Создать точки навигации
+            const dotsContainer = document.getElementById('lesson-dots');
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < modules[moduleId].lessons; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'lesson-dot' + (i === 0 ? ' active' : '');
+                dot.dataset.lesson = i;
+                dot.addEventListener('click', () => {
+                    currentLesson = i;
+                    loadLesson();
+                });
+                dotsContainer.appendChild(dot);
+            }
+            
+            // Загрузить первый урок
+            loadLesson();
+        }
+        
+        // Загрузка урока
+        function loadLesson() {
+            // Обновить индикатор прогресса
+            document.getElementById('lesson-progress').textContent = `Урок ${currentLesson + 1}/${modules[currentModule].lessons}`;
+            
+            // Обновить навигационные кнопки
+            document.getElementById('prev-lesson').disabled = currentLesson === 0;
+            document.getElementById('next-lesson').disabled = currentLesson === modules[currentModule].lessons - 1;
+            
+            // Обновить активную точку
+            document.querySelectorAll('.lesson-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentLesson);
+            });
+            
+            // Загрузить содержимое урока
+            const lessonContainer = document.getElementById('lesson-container');
+            
+            // Здесь мы загружаем содержимое из массива wifiLessons
+            // В реальном приложении это могло бы быть AJAX-запросом к серверу
+            if (currentModule === 'wifi' && currentLesson < wifiLessons.length) {
+                lessonContainer.innerHTML = wifiLessons[currentLesson].content;
+                
+                // Добавить обработчики для интерактивных элементов
+                setupInteractiveElements();
+            } else {
+                lessonContainer.innerHTML = `
+                    <div class="lesson-placeholder">
+                        <h3>Урок находится в разработке</h3>
+                        <p>Это демонстрационная версия курса. Полное содержание будет доступно позже.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Настройка интерактивных элементов
+        function setupInteractiveElements() {
+            // Обработка квизов
+            document.querySelectorAll('.quiz-options input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const quizBox = this.closest('.quiz-box');
+                    const resultBox = quizBox.querySelector('.quiz-result');
+                    
+                    if (this.value === 'a') {  // Правильный ответ - WEP
+                        resultBox.innerHTML = '<div class="success-message">✅ Верно! WEP является наиболее уязвимым протоколом.</div>';
+                        updateXP(5);
+                        
+                        // Отмечаем прогресс урока
+                        if (currentModule) {
+                            updateModuleStats(currentModule);
+                        }
+                    } else {
+                        resultBox.innerHTML = '<div class="error-message">❌ Неверно. Попробуйте еще раз.</div>';
+                    }
+                });
+            });
+            
+            // Обработка проверки задания
+            const completeBtn = document.querySelector('.challenge-complete-btn');
+            if (completeBtn) {
+                completeBtn.addEventListener('click', function() {
+                    // Проверяем, не была ли кнопка уже нажата (предотвращаем повторное получение XP)
+                    if (this.hasAttribute('data-completed')) {
+                        return;
+                    }
+
+                    // Отмечаем кнопку как нажатую
+                    this.setAttribute('data-completed', 'true');
+                    this.disabled = true;
+
+                    const resultBox = document.querySelector('.challenge-result');
+                    resultBox.innerHTML = '<div class="success-message">🎉 Поздравляем! Вы успешно выполнили задание и получили 25 XP!</div>';
+                    updateXP(25);
+                    
+                    // Отмечаем прогресс урока
+                    if (currentModule) {
+                        updateModuleStats(currentModule);
+                    }
+                    
+                    // Разблокировать следующий модуль при необходимости
+                    if (currentModule === 'wifi' && userLevel === 1) {
+                        modules.payload.unlocked = true;
+                        
+                        // Обновить интерфейс
+                        document.querySelector('.module-card[data-module="payload"]').classList.remove('locked');
+                        document.querySelector('.map-node[data-module="payload"]').classList.remove('locked');
+                        document.querySelector('.map-node[data-module="payload"]').classList.add('unlocked');
+                        
+                        // Сохраняем прогресс
+                        saveUserProgress();
+                    }
+
+                    // Показываем уведомление о завершении и добавляем обработчик для возврата к модулям
+                    const isLastLesson = currentLesson === modules[currentModule].lessons - 1;
+                    const isModuleCompleted = modules[currentModule].completed;
+
+                    if (isLastLesson || isModuleCompleted) {
+                        setTimeout(() => {
+                            showNotification('Модуль завершен!', `Поздравляем! Вы завершили модуль "${modules[currentModule].title}".`);
+                            
+                            // Добавляем обработчик для перехода к списку модулей после закрытия уведомления
+                            const modalConfirmBtn = document.getElementById('modal-confirm');
+                            modalConfirmBtn.addEventListener('click', function onceHandler() {
+                                // Возвращаемся к списку модулей
+                                document.getElementById('active-module').style.display = 'none';
+                                document.querySelector('.module-selection').style.display = 'block';
+                                document.querySelector('.progress-map').style.display = 'block';
+                                currentModule = null;
+                                currentLesson = 0;
+
+                                // Удаляем обработчик, чтобы не накапливать их
+                                modalConfirmBtn.removeEventListener('click', onceHandler);
+                            }, { once: true });
+                        }, 1000);
+                    }
+                });
+            }
+            
+            // Обработка пропуска задания
+            const skipBtn = document.querySelector('.challenge-skip-btn');
+            if (skipBtn) {
+                skipBtn.addEventListener('click', function() {
+                    const resultBox = document.querySelector('.challenge-result');
+                    resultBox.innerHTML = '<div class="warning-message">⚠️ Вы пропустили задание. Вы можете вернуться к нему позже.</div>';
+                });
+            }
+            
+            // Настройка мини-игры
+            setupDragAndDropGame();
+        }
+        
+        // Настройка drag-and-drop игры
+        function setupDragAndDropGame() {
+            const dragItems = document.querySelectorAll('.drag-item');
+            const dropZones = document.querySelectorAll('.drop-zone');
+            const gameResult = document.querySelector('.game-result');
+            
+            if (!dragItems.length) return;
+            
+            let draggedItem = null;
+            
+            dragItems.forEach(item => {
+                item.addEventListener('dragstart', function() {
+                    draggedItem = this;
+                    this.classList.add('dragging');
+                });
+                
+                item.addEventListener('dragend', function() {
+                    this.classList.remove('dragging');
+                    draggedItem = null;
+                });
+            });
+            
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('drag-over');
+                });
+                
+                zone.addEventListener('dragleave', function() {
+                    this.classList.remove('drag-over');
+                });
+                
+                zone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+                    
+                    if (draggedItem) {
+                        if (this.dataset.accept === draggedItem.dataset.value) {
+                            this.appendChild(draggedItem);
+                            draggedItem.classList.add('correct');
+                            
+                            // Проверить, все ли верно размещено
+                            checkGameCompletion();
+                        } else {
+                            draggedItem.classList.add('incorrect');
+                            setTimeout(() => {
+                                draggedItem.classList.remove('incorrect');
+                            }, 1000);
+                        }
+                    }
+                });
+            });
+            
+            function checkGameCompletion() {
+                const correctItems = document.querySelectorAll('.drag-item.correct');
+                if (correctItems.length === dragItems.length) {
+                    gameResult.innerHTML = '<div class="success-message">🎮 Отлично! Вы правильно определили все уязвимости!</div>';
+                    updateXP(10);
+                    
+                    // Отмечаем прогресс урока
+                    if (currentModule) {
+                        updateModuleStats(currentModule);
+                    }
+                }
+            }
+        }
+        
+        // Обновление XP и уровня
+        function updateXP(amount) {
+            userXP += amount;
+            
+            // Расчет уровня (каждые 50 XP)
+            const newLevel = Math.floor(userXP / 50) + 1;
+            const nextLevelXP = newLevel * 50;
+            const xpProgress = (userXP % 50) / 50 * 100;
+            
+            // Обновить интерфейс
+            document.getElementById('current-xp').textContent = userXP;
+            document.getElementById('next-level-xp').textContent = nextLevelXP;
+            document.getElementById('level-number').textContent = newLevel;
+            document.getElementById('xp-fill').style.width = `${xpProgress}%`;
+            
+            // Проверить повышение уровня
+            if (newLevel > userLevel) {
+                levelUp(newLevel);
+            }
+            
+            userLevel = newLevel;
+            
+            // Сохраняем прогресс
+            saveUserProgress();
+        }
+        
+        // Повышение уровня
+        function levelUp(newLevel) {
+            showNotification('Новый уровень!', `Поздравляем! Вы достигли уровня ${newLevel}!`);
+            
+            // Разблокировать модули в зависимости от уровня
+            Object.keys(modules).forEach(moduleId => {
+                const module = modules[moduleId];
+                if (!module.unlocked && module.requiredLevel && newLevel >= module.requiredLevel) {
+                    module.unlocked = true;
+                    
+                    // Обновить интерфейс
+                    const moduleCard = document.querySelector(`.module-card[data-module="${moduleId}"]`);
+                    const mapNode = document.querySelector(`.map-node[data-module="${moduleId}"]`);
+                    
+                    if (moduleCard) {
+                        moduleCard.classList.remove('locked');
+                        const btn = moduleCard.querySelector('.module-btn');
+                        if (btn) {
+                            btn.classList.remove('disabled');
+                            btn.textContent = 'Начать обучение';
+                        }
+                    }
+                    
+                    if (mapNode) {
+                        mapNode.classList.remove('locked');
+                        mapNode.classList.add('unlocked');
+                    }
+                }
+            });
+            
+            // Сохраняем прогресс
+            saveUserProgress();
+        }
+        
+        // Показать уведомление
+        function showNotification(title, message) {
+            const modal = document.getElementById('notification-modal');
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-body').textContent = message;
+            modal.style.display = 'block';
+        }
+        
+        // Функция для сброса прогресса (для отладки)
+        function resetProgress() {
+            localStorage.removeItem('hackMasterProgress');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
